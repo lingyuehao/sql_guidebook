@@ -46,6 +46,10 @@ This query finds which countries have the most airports in the OpenFlights datas
 #### Result:
 ![Query 1 Output](img/results/result_1.png)
 
+#### Notes:
+- Each airport is counted separately, even if multiple airports serve the same city.
+- Country names may have slight spelling inconsistencies from different sources.
+
 
 ### Query 2: Most “International” Airports by Distinct Destination Countries (Top 20)
 #### SQL Command:
@@ -71,6 +75,10 @@ This approach makes sense because counting distinct destination countries (inste
 #### Result:
 ![Query 2 Output](img/results/result_2.png)
 
+#### Notes:
+- “International” refers to the number of distinct destination countries, not flight frequency.
+- Multi-airport cities may inflate results since each airport is treated independently.
+
 
 ### Query 3: Number of Airports Served by Each Airline (Top 15)
 #### SQL Command:
@@ -94,6 +102,10 @@ The results show that American Airlines and United Airlines dominate globally, e
 
 #### Result:
 ![Query 3 Output](img/results/result_3.png)
+
+#### Notes:
+- Both departure and arrival airports are included when counting.
+- Code-shared routes are not filtered out, which may overstate some airlines’ reach.
 
 
 ### Query 4: China and United States – Top Departure Hubs with Hub Size Labels
@@ -138,6 +150,10 @@ The results show that Beijing Capital (535) is China’s largest hub, while Atla
 
 #### Result:
 ![Query 4 Output](img/results/result_4.png)
+
+#### Notes:
+- Hub size is based on departure route count only, using custom thresholds for illustration.
+- Arrival routes are not considered in the size classification.
 
 
 ### Query 5: Top 10 Airlines and Their Most Used Aircraft Models (Usage Trend Comparison)
@@ -190,6 +206,10 @@ Results show patterns that match reality: e.g., Ryanair → Boeing 737-800 (2,48
 #### Result:
 ![Query 5 Output](img/results/result_5.png)
 
+#### Notes:
+- Aircraft models were matched using the first 3 IATA characters in equipment.
+- LEAD and LAG differences show relative usage trends, not actual chronological changes.
+
 
 ### Query 6: Top 20 City Pair per Airline (with frequency)
 #### SQL Command:
@@ -238,3 +258,7 @@ The results highlight classic shuttle corridors and regional staples—e.g., Osa
 
 #### Result:
 ![Query 6 Output](img/results/result_6.png)
+
+#### Notes:
+- City pairs are directional (A→B only); reverse routes are separate.
+- Large cities with multiple airports may appear several times under different names.
